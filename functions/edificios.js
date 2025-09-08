@@ -1,6 +1,7 @@
 ﻿const { getDb, oid, json } = require("..\/lib\/api-utils");
+const { withCors } = require('./_utils/cors');
 
-exports.handler = async (event) => {
+exports.handler =  withCors(async (event) => {
   try {
     const db = await getDb();
     const col = db.collection("edificios");
@@ -54,4 +55,4 @@ exports.handler = async (event) => {
     console.error(e);
     return json(500, { error: "Error del servidor" });
   }
-};
+});

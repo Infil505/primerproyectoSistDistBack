@@ -1,0 +1,26 @@
+﻿{
+    "name":  "edificios",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "index.js",
+    "scripts":  {
+                    "dev":  "netlify dev",
+                    "seed":  "node scripts/seed.js",
+                    "build":  "echo skip build (external frontend)",
+                    "dev-fe":  "npm --prefix frontend run dev",
+                    "dev:fe":  "npm --prefix \"C:\\Users\\dsilv\\OneDrive\\Escritorio\\Repositorio\\Arquitectura de info\\proyecto edificios\\front-Edificios\\frontend\" run dev"
+                },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "commonjs",
+    "dependencies":  {
+                         "dotenv":  "^17.2.2",
+                         "mongodb":  "^6.19.0"
+                     },
+    "devDependencies":  {
+                            "netlify-cli":  "^23.5.0"
+                        }
+}

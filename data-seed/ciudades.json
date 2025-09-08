@@ -1,0 +1,8 @@
+[
+  { "nombre": "Dub�i", "pais": "Emiratos �rabes Unidos", "poblacion": 3400000, "imagen_url": "https://example.com/dubai.jpg" },
+  { "nombre": "Shangh�i", "pais": "China", "poblacion": 24800000, "imagen_url": "https://example.com/shanghai.jpg" },
+  { "nombre": "Nueva York", "pais": "EE.UU.", "poblacion": 8400000, "imagen_url": "https://example.com/nyc.jpg" },
+  { "nombre": "Kuala Lumpur", "pais": "Malasia", "poblacion": 1800000, "imagen_url": "https://example.com/kl.jpg" },
+  { "nombre": "Se�l", "pais": "Corea del Sur", "poblacion": 9600000, "imagen_url": "https://example.com/seoul.jpg" },
+  { "nombre": "Taip�i", "pais": "Taiw�n", "poblacion": 2600000, "imagen_url": "https://example.com/taipei.jpg" }
+]

@@ -1,0 +1,8 @@
+[
+  { "nombre": "Adrian Smith", "nacionalidad": "Estadounidense", "anio_nacimiento": 1944, "imagen_url": "https://example.com/adrian-smith.jpg" },
+  { "nombre": "William F. Baker", "nacionalidad": "Estadounidense", "anio_nacimiento": 1953, "imagen_url": "https://example.com/wf-baker.jpg" },
+  { "nombre": "César Pelli", "nacionalidad": "Argentino-Estadounidense", "anio_nacimiento": 1926, "imagen_url": "https://example.com/cesar-pelli.jpg" },
+  { "nombre": "Renzo Piano", "nacionalidad": "Italiano", "anio_nacimiento": 1937, "imagen_url": "https://example.com/renzo-piano.jpg" },
+  { "nombre": "I. M. Pei", "nacionalidad": "Chino-Estadounidense", "anio_nacimiento": 1917, "imagen_url": "https://example.com/im-pei.jpg" },
+  { "nombre": "Moshe Safdie", "nacionalidad": "Canadiense-Israelí", "anio_nacimiento": 1938, "imagen_url": "https://example.com/moshe-safdie.jpg" }
+]

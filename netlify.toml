@@ -1,15 +1,15 @@
 [build]
-  command = "npm run build"
-  publish = "."
-  functions = "functions"
+command = ""            # sin build
+publish = "."
+functions = "functions"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
 
 [dev]
-  command = ""
-  port = 8888
-  targetPort = 0
-  functionsPort = 9999
+command = ""            # no lanzar frontend en dev
+port = 8888
+targetPort = 0
+functionsPort = 9999

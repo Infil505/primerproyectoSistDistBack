@@ -28,7 +28,7 @@ netlify/functions/**/.cache/
 netlify/functions/**/dist/
 
 # ── Variables de entorno ────────────────────────────────────────
-
+.env
 .env.*
 !.env.example
 frontend/.env

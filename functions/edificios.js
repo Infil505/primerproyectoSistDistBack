@@ -1,7 +1,7 @@
-﻿const { getDb, oid, json } = require("..\/lib\/api-utils");
-const { withCors } = require('./_utils/cors');
+﻿const { getDb, oid, json } = require("../lib/api-utils");
+const { withCors } = require("./_utils/cors");
 
-exports.handler =  withCors(async (event) => {
+exports.handler = withCors(async (event) => {
   try {
     const db = await getDb();
     const col = db.collection("edificios");
@@ -11,7 +11,8 @@ exports.handler =  withCors(async (event) => {
     switch (event.httpMethod) {
       case "GET": {
         if (id) {
-          const _id = oid(id); if (!_id) return json(400, { error: "id inválido" });
+          const _id = oid(id);
+          if (!_id) return json(400, { error: "id inválido" });
           const doc = await col.findOne({ _id });
           if (!doc) return json(404, { error: "no encontrado" });
           return json(200, doc);
@@ -24,8 +25,18 @@ exports.handler =  withCors(async (event) => {
       }
       case "POST": {
         const body = JSON.parse(event.body || "{}");
-        const required = ["nombre","altura_m","pisos","anio_inauguracion","uso","imagen_url","ciudad_id","arquitecto_id"];
-        for (const f of required) if (!(f in body)) return json(400, { error: `Falta campo: ${f}` });
+        const required = [
+          "nombre",
+          "altura_m",
+          "pisos",
+          "anio_inauguracion",
+          "uso",
+          "imagen_url",
+          "ciudad_id",
+          "arquitecto_id",
+        ];
+        for (const f of required)
+          if (!(f in body)) return json(400, { error: `Falta campo: ${f}` });
         body.ciudad_id = oid(body.ciudad_id);
         body.arquitecto_id = oid(body.arquitecto_id);
         const r = await col.insertOne(body);
@@ -34,17 +45,40 @@ exports.handler =  withCors(async (event) => {
       case "PUT":
       case "PATCH": {
         if (!id) return json(400, { error: "id requerido" });
-        const _id = oid(id); if (!_id) return json(400, { error: "id inválido" });
+        const _id = oid(id);
+        if (!_id) return json(400, { error: "id inválido" });
+
         const body = JSON.parse(event.body || "{}");
-        if (body.ciudad_id) body.ciudad_id = oid(body.ciudad_id);
-        if (body.arquitecto_id) body.arquitecto_id = oid(body.arquitecto_id);
+
+        // 🔴 Nunca intentes actualizar _id
+        if ("_id" in body) delete body._id;
+
+        // Validar y convertir ids relacionales si vienen en el body
+        if ("ciudad_id" in body) {
+          const c = oid(body.ciudad_id);
+          if (!c) return json(400, { error: "ciudad_id inválido" });
+          body.ciudad_id = c;
+        }
+        if ("arquitecto_id" in body) {
+          const a = oid(body.arquitecto_id);
+          if (!a) return json(400, { error: "arquitecto_id inválido" });
+          body.arquitecto_id = a;
+        }
+
+        // Opcional: evitar $set vacío
+        if (!Object.keys(body).length)
+          return json(400, { error: "body vacío" });
+
         await col.updateOne({ _id }, { $set: body });
+
         const updated = await col.findOne({ _id });
         return json(200, updated);
       }
+
       case "DELETE": {
         if (!id) return json(400, { error: "id requerido" });
-        const _id = oid(id); if (!_id) return json(400, { error: "id inválido" });
+        const _id = oid(id);
+        if (!_id) return json(400, { error: "id inválido" });
         await col.deleteOne({ _id });
         return json(204, {});
       }
